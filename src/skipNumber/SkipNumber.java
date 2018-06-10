@@ -24,15 +24,15 @@ public class SkipNumber {
                     maxSumNotSkip=mid;
                 }
             }
-            boolean flag=false;
+            boolean flag=true;
             for (int i = 2; i < count; i++) {
                 int midSkip=(increaseNumber[i] - increaseNumber[i - 2]);
                 if (midSkip<=maxSumNotSkip){
                     System.out.println(maxSumNotSkip);
+                    flag=false;
                     break;
                 }else if (midSkip<maxSumBySkip){
                     maxSumBySkip=midSkip;
-                    flag=true;
                 }
             }
             if (flag){
