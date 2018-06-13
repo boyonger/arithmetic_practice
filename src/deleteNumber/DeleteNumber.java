@@ -2,22 +2,35 @@ package deleteNumber;
 
 import java.io.IOException;
 
-class LinkNote{
+class LinkNote {
     private int data;
     private LinkNote next;
-    LinkNote(){
+
+    LinkNote() {
 
     }
-    LinkNote(int data){
-        this.data=data;
+
+    LinkNote(int data) {
+        this.data = data;
     }
 }
 
-class Link{
-    LinkNote firstLink;
-     Link(LinkNote p){
-         firstLink =p;
-     }
+class Link {
+    private LinkNote firstLink;
+
+    Link(LinkNote p) {
+        firstLink = p;
+    }
+
+
+    //删除第n个结点，从1开始算起
+    public boolean remove(int position){
+        LinkNote p=firstLink;
+        for (int i=1;i<=position;i++){
+
+        }
+    }
+
 
 }
 
