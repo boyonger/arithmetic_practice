@@ -1,4 +1,4 @@
-package testlink; 
+package test.link;
 
 import org.junit.Test; 
 import org.junit.Before; 
@@ -8,7 +8,7 @@ import org.junit.After;
 * Link Tester. 
 * 
 * @author <Authors name> 
-* @since <pre>ÁùÔÂ 17, 2018</pre> 
+* @since <pre>ï¿½ï¿½ï¿½ï¿½ 17, 2018</pre> 
 * @version 1.0 
 */ 
 public class LinkTest { 
