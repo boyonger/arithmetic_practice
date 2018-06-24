@@ -113,6 +113,19 @@ class Link {
             System.out.println(p.data);
         }
     }
+
+    //翻转链表
+    public boolean reverse() {
+        LinkNote pre = firstLink;
+        LinkNote now = firstLink.next;
+        while (now.next != firstLink) {
+            LinkNote next = now.next;
+            now.next = pre;
+            pre = now;
+            now = next;
+        }
+        return true;
+    }
 }
 
 public class DeleteNumber {
