@@ -1,5 +1,9 @@
 package graph;
 
+import java.util.Arrays;
+import java.util.Queue;
+import java.util.concurrent.ArrayBlockingQueue;
+
 //邻接表无向图
 public class GraphLink {
 
@@ -114,11 +118,26 @@ public class GraphLink {
         return true;
     }
 
-    public boolean dfs(int v) {
+    //顺便返回多少连通块
+    public int dfs(int v) {
+        int sum=0;
+        boolean isDone=false;
         boolean[] visited = new boolean[mVertex.length];
+        this.dfs(v,visited);
+        while (isDone==false){
+            isDone=true;
+            for (int i=0;i<mVertex.length;i++){
+                if (visited[i]==false){
+                    isDone=false;
+                    this.dfs(i,visited);
+                }
+            }
+        }
+
 
     }
 
+    //深度遍历以及广度遍历都只访问一次连通图。
     private void dfs(int v, boolean[] visited) {
         visited[v] = true;
         Edge p = mVertex[v].firstEdge;
@@ -128,9 +147,24 @@ public class GraphLink {
             } else {
                 p = p.nextEdge;
             }
-
         }
     }
+
+    public void bfs(int v){
+
+    }
+
+    private void bfs(int v,boolean[] visited){
+        ArrayBlockingQueue<Integer> queue=new ArrayBlockingQueue<>(mVertex.length);
+        visited[v] =true;
+        queue.put();
+
+
+
+    }
+
+
+
 
 
 }
