@@ -1,10 +1,13 @@
 package graph;
 
+<<<<<<< HEAD
 import java.io.IOException;
 import java.util.List;
+=======
 import java.util.Arrays;
 import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
+>>>>>>> eda38319e000ff585e972d98a9a9eb2408cd96c0
 
 //邻接表无向图
 public class GraphLink {
@@ -68,6 +71,8 @@ public class GraphLink {
         Edge q = new Edge(v1, weight);
         q.nextEdge = mVertex[v2].firstEdge;
         mVertex[v2].firstEdge = q;
+<<<<<<< HEAD
+=======
         return true;
     }
 >>>>>>> eda38319e000ff585e972d98a9a9eb2408cd96c0
