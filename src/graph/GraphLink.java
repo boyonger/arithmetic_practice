@@ -1,13 +1,7 @@
 package graph;
 
-<<<<<<< HEAD
 import java.io.IOException;
-import java.util.List;
-=======
-import java.util.Arrays;
-import java.util.Queue;
 import java.util.concurrent.ArrayBlockingQueue;
->>>>>>> eda38319e000ff585e972d98a9a9eb2408cd96c0
 
 //邻接表无向图
 public class GraphLink {
@@ -71,54 +65,9 @@ public class GraphLink {
         Edge q = new Edge(v1, weight);
         q.nextEdge = mVertex[v2].firstEdge;
         mVertex[v2].firstEdge = q;
-<<<<<<< HEAD
-=======
-        return true;
-    }
->>>>>>> eda38319e000ff585e972d98a9a9eb2408cd96c0
-
-    public boolean removeEdge(int v1, int v2) {
-        if (v1 >= mVertex.length || v2 >= mVertex.length) return false;
-        Edge p = mVertex[v1].firstEdge;
-        if (p == null) {
-            return false;
-        }
-        if (p.vexNumber == v2) {
-            mVertex[v1].firstEdge = p.nextEdge;
-        }
-        while (p.nextEdge != null) {
-            if (p.nextEdge.vexNumber == v2) {
-                break;
-            }
-            p = p.nextEdge;
-        }
-        if (p.nextEdge != null) {
-            //那就是=下一个就要删除的
-            p.nextEdge = p.nextEdge.nextEdge;
-        } else {
-            return false;
-        }
-
-        Edge q = mVertex[v2].firstEdge;
-        if (q == null) return false;
-        if (q.vexNumber == v1) {
-            mVertex[v2].firstEdge = p.nextEdge;
-        }
-        while (q.nextEdge != null) {
-            if (q.nextEdge.vexNumber == v1) {
-                break;
-            }
-            q = q.nextEdge;
-        }
-        if (q.nextEdge != null) {
-            q.nextEdge = q.nextEdge.nextEdge;
-        } else {
-            return false;
-        }
         return true;
     }
 
-<<<<<<< HEAD
     public boolean removeEdge(int v1, int v2) {
         if (v1 >= mVertex.length || v2 >= mVertex.length) return false;
         Edge p = mVertex[v1].firstEdge;
@@ -162,19 +111,7 @@ public class GraphLink {
         return true;
     }
 
-    public boolean removeVertex(int v) {
-        while (mVertex[v].firstEdge!=null){
-            this.removeEdge(v,mVertex[v].firstEdge.vexNumber);
-        }
-        return true;
-    }
 
-    public void dfs(){
-        boolean[] visited=new boolean[mVertex.length];
-        for (int i=0;i<visited.length;i++){
-            if (visited[i]==false){
-                dfs(visited,i);
-=======
     public boolean removeVertex(int v) {
         if (v >= mVertex.length) return false;
         while (mVertex[v].firstEdge != null) {
@@ -185,21 +122,22 @@ public class GraphLink {
 
     //顺便返回多少连通块
     public int dfs(int v) {
-        int sum=0;
-        boolean isDone=false;
+        int sum = 0;
+        boolean isDone = false;
         boolean[] visited = new boolean[mVertex.length];
-        this.dfs(v,visited);
-        while (isDone==false){
-            isDone=true;
-            for (int i=0;i<mVertex.length;i++){
-                if (visited[i]==false){
-                    isDone=false;
-                    this.dfs(i,visited);
+        this.dfs(v, visited);
+        sum++;
+        while (isDone == false) {
+            isDone = true;
+            for (int i = 0; i < mVertex.length; i++) {
+                if (visited[i] == false) {
+                    isDone = false;
+                    this.dfs(i, visited);
+                    sum++;
                 }
             }
         }
-
-
+        return sum;
     }
 
     //深度遍历以及广度遍历都只访问一次连通图。
@@ -211,38 +149,33 @@ public class GraphLink {
                 dfs(p.vexNumber, visited);
             } else {
                 p = p.nextEdge;
->>>>>>> eda38319e000ff585e972d98a9a9eb2408cd96c0
             }
         }
     }
 
-<<<<<<< HEAD
-    public void dfs(boolean[] visited,int v1){
 
+    private void bfs(int v) {
+        boolean[] visited = new boolean[mVertex.length];
+        ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(mVertex.length);
+        visited[v] = true;
+        queue.add(v);
+        while (!queue.isEmpty()){
+            int vertexPos=queue.poll();
+            Edge p=mVertex[vertexPos].firstEdge;
+            while (p!=null){
+                if (visited[vertexPos]!=true){
+                    visited[v]=true;
+                    queue.add(p.vexNumber);
+                }
+                p=p.nextEdge;
+            }
+        }
     }
-
 
 
     public static void main(String[] args) throws IOException {
-
-    }
-=======
-    public void bfs(int v){
-
+        
     }
 
-    private void bfs(int v,boolean[] visited){
-        ArrayBlockingQueue<Integer> queue=new ArrayBlockingQueue<>(mVertex.length);
-        visited[v] =true;
-        queue.put();
-
-
-
-    }
-
-
-
-
->>>>>>> eda38319e000ff585e972d98a9a9eb2408cd96c0
 
 }
