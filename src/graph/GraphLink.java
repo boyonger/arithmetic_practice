@@ -1,5 +1,8 @@
 package graph;
 
+import java.io.IOException;
+import java.util.List;
+
 //邻接表无向图
 public class GraphLink {
 
@@ -41,8 +44,8 @@ public class GraphLink {
         for (int i = 0; i < edge.length; i++) {
             int v1 = edge[i][0];
             int v2 = edge[i][1];
-            int weight=0;
-            this.insertEdge(v1,v2,weight);
+            int weight = 0;
+            this.insertEdge(v1, v2, weight);
         }
 
     }
@@ -56,15 +59,83 @@ public class GraphLink {
         }
         p = new Edge(v2, weight);
         //头插法,每次都会插入两个，判断一次即可
-        p.nextEdge=mVertex[v1].firstEdge;
-        mVertex[v1].firstEdge=p;
+        p.nextEdge = mVertex[v1].firstEdge;
+        mVertex[v1].firstEdge = p;
 
-        Edge q=new Edge(v1,weight);
-        q.nextEdge=mVertex[v2].firstEdge;
-        mVertex[v2].firstEdge=q;
+        Edge q = new Edge(v1, weight);
+        q.nextEdge = mVertex[v2].firstEdge;
+        mVertex[v2].firstEdge = q;
 
         return true;
     }
 
+    public boolean removeEdge(int v1, int v2) {
+        if (v1 >= mVertex.length || v2 >= mVertex.length) return false;
+        Edge p = mVertex[v1].firstEdge;
+        if (p == null) {
+            return false;
+        }
+        //没有附加头结点，则需要处理头结点分开得情况
+        if (p.vexNumber == v2) {
+            mVertex[v1].firstEdge = p.nextEdge;
+        } else {
+            while (p.nextEdge != null) {
+                if (p.nextEdge.vexNumber == v2)
+                    break;
+            }
+            if (p.nextEdge != null) {
+                p.nextEdge = p.nextEdge.nextEdge;
+            } else {
+                return false;
+            }
+        }
+
+        //对应的
+        Edge q = mVertex[v2].firstEdge;
+        if (q == null) {
+            return false;
+        }
+        if (q.vexNumber == v1) {
+            mVertex[v2].firstEdge = p.nextEdge;
+        } else {
+            while (q.nextEdge != null) {
+                if (q.nextEdge.vexNumber == v1) {
+                    break;
+                }
+            }
+            if (q.nextEdge != null) {
+                q.nextEdge = q.nextEdge.nextEdge;
+            } else {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    public boolean removeVertex(int v) {
+        while (mVertex[v].firstEdge!=null){
+            this.removeEdge(v,mVertex[v].firstEdge.vexNumber);
+        }
+        return true;
+    }
+
+    public void dfs(){
+        boolean[] visited=new boolean[mVertex.length];
+        for (int i=0;i<visited.length;i++){
+            if (visited[i]==false){
+                dfs(visited,i);
+            }
+        }
+    }
+
+    public void dfs(boolean[] visited,int v1){
+
+    }
+
+
+
+    public static void main(String[] args) throws IOException {
+
+    }
 
 }
