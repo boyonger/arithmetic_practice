@@ -153,7 +153,7 @@ public class GraphLink {
         }
     }
 
-
+    //广度优先遍历
     private void bfs(int v) {
         boolean[] visited = new boolean[mVertex.length];
         ArrayBlockingQueue<Integer> queue = new ArrayBlockingQueue<>(mVertex.length);
