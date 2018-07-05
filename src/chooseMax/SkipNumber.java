@@ -1,4 +1,4 @@
-package skipNumber;
+package chooseMax;
 
 import java.io.BufferedReader;
 import java.io.IOException;
