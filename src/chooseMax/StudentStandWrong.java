@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 /*
@@ -23,13 +22,13 @@ import java.util.List;
 输出
 49
 */
-public class StudentStand {
+public class StudentStandWrong {
     public static int[] max(int[] list) {
         //0为max，1位位置
         int[] maxAndPos = new int[2];
         maxAndPos[0] = Integer.MIN_VALUE;
         for (int i = 0; i < list.length; i++) {
-            if (list[i] > maxAndPos[0]) {
+            if (list[i] >= maxAndPos[0]) {
                 maxAndPos[0] = list[i];
                 maxAndPos[1] = i;
             }
@@ -55,28 +54,39 @@ public class StudentStand {
 
         //开始
         int sumMul = 1;
-        int sumAllMul = 1;
+        int maxAllMul = 1;
+        int minAllMul=1;
         int valueCount = 0;
+        List<Integer> maxValue = new ArrayList<>();
         //i为当前的位置
-        for (int maxPos = 0; maxPos < ai.length - d; maxPos++) {
-            int pos=maxPos;
+        for (int maxPos = 0; maxPos < ai.length; maxPos++) {
+            int pos = maxPos;
             while (valueCount < k) {
-                for (int i = pos; i < d; i++) {
+                for (int i = pos; i < Integer.min(d, smallDai.length); i++) {
                     if (i < smallDai.length)
                         smallDai[i] = ai[i];
                 }
                 int[] maxAndPos = max(smallDai);
                 if (maxAndPos[1] > pos) {
-                    pos = maxAndPos[1];
+                    pos = maxAndPos[1] + 1;
+                }else{
+                    pos++;
+                }
+                smallDai[maxAndPos[1]] = Integer.MIN_VALUE;
+                if (maxAndPos[0] > Integer.MIN_VALUE) {
+                    maxValue.add(maxAndPos[0]);
+                    sumMul *= maxAndPos[0];
                 }
                 valueCount++;
-                sumMul *= maxAndPos[1];
             }
-            if (sumMul > sumAllMul) {
-                sumAllMul = sumMul;
+            if (sumMul > maxAllMul && maxValue.size() == k) {
+                maxAllMul = sumMul;
             }
             sumMul = 1;
             valueCount = 0;
+            maxValue.clear();
         }
+        System.out.println(maxValue.toString());
+        System.out.println(maxAllMul);
     }
 }
