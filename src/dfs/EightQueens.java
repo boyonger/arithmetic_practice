@@ -13,13 +13,15 @@ public class EightQueens {
 
     }
 
-    public static void solveQueens(int[] k){
-        for (int i=0;i<k.length;i++){
-            while (k[i]<=k.length){  //k.length就是指皇后数
-                k[i]++;
-                if (i>)
+    //k[0]=0表示（1,1）
+    public static void solveQueens(int n, int[] k) { //n代表k[n]
+        for (int i = 0; i < k.length; i++) { //k[0]从0->k.length表示位置
+            k[n] = i;
+            for (int j = 0; j < n; j++) {
+                if (k[j] != k[n] && Math.abs(j - n) != Math.abs(k[j] - k[n])) {
+                    solveQueens(n+1,k);
+                }
             }
-            if ()
         }
     }
 }
