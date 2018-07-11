@@ -76,6 +76,5 @@ public class StudentStandRight {
         }
         System.out.println(res);
 
-
     }
 }
