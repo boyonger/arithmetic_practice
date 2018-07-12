@@ -6,20 +6,35 @@ package dfs;
 （即92个不同的皇后串）。给出一个数n，要求输出第n个串。串的比较是这样的:皇后串x置于皇后串y之前，当且仅当将x视为整数时比y小。
  */
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class EightQueens {
     public static void main(String[] args) throws IOException {
+        BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+        String str;
+        List<String> queenResult=new ArrayList<>();
+        int[] k=new int[8];
+        for(int i=0;i<k.length;i++){
+            k[i]=-1;
+        }
+        solveQueens(0,k,queenResult);
+        while ((str=br.readLine())!=null){
 
+        }
     }
 
     //k[0]=0表示（1,1）
-    public static void solveQueens(int n, int[] k) { //n代表k[n]
+    //k=[-1,-1,-1,-1,-1,-1,-1,-1]
+    public static void solveQueens(int n, int[] k, List<String> queenResult) { //n代表k[n]
         for (int i = 0; i < k.length; i++) { //k[0]从0->k.length表示位置
             k[n] = i;
             for (int j = 0; j < n; j++) {
                 if (k[j] != k[n] && Math.abs(j - n) != Math.abs(k[j] - k[n])) {
-                    solveQueens(n+1,k);
+                    solveQueens(n+1,k,queenResult);
                 }
             }
         }
