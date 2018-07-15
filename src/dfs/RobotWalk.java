@@ -105,6 +105,10 @@ class Robot {
                 for (int t=0;t<4;t++){
                     this.turn(t);
                     this.step();
+                    if (position[0]==end[0]&&position[1]==end[1]){
+                        timeList.add(time);
+                        time=0;
+                    }
                 }
             }
         }
