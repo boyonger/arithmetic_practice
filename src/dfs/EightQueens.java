@@ -23,7 +23,7 @@ public class EightQueens {
         }
         solveQueens(0,k,queenResult);
         while ((str=br.readLine())!=null){
-
+            System.out.println(queenResult.get(Integer.parseInt(str)-1));
         }
     }
 
@@ -32,8 +32,20 @@ public class EightQueens {
     public static void solveQueens(int n, int[] k, List<String> queenResult) { //n代表k[n]
         for (int i = 0; i < k.length; i++) { //k[0]从0->k.length表示位置
             k[n] = i;
+            boolean flag=true;
             for (int j = 0; j < n; j++) {
-                if (k[j] != k[n] && Math.abs(j - n) != Math.abs(k[j] - k[n])) {
+                if (k[j] == k[n] || Math.abs(j - n) == Math.abs(k[j] - k[n])) {
+                    flag=false;
+                }
+            }
+            if (flag==true){
+                if (n>=k.length-1){
+                    StringBuffer stringBuffer=new StringBuffer();
+                    for(int value:k){
+                        stringBuffer.append(value+1);
+                    }
+                    queenResult.add(stringBuffer.toString());
+                }else{
                     solveQueens(n+1,k,queenResult);
                 }
             }

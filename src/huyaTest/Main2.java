@@ -1,3 +1,5 @@
+package huyaTest;
+
 import java.util.*;
 
 public class Main2 {
