@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /*
@@ -25,25 +26,30 @@ import java.util.List;
 地图中1代表有障碍物，机器人不能前往，0代表无障碍物机器人可以前往 地图中相邻的每两个点之间的距离为1m。
 0 <= l,w <= 128
 输出：
+12
 机器人从起点移动到终点所需要的最短秒数，当不可达时输出65535
  */
 class Robot {
     public int map[][];
     public int[] start;
     public int[] end;
-    public int[] position;
-    public int time;
+    public int[] position; //从左至右分别为row,col,turn,time
     public List<Integer> timeList;
 
     public Robot(int map[][], int[] start, int[] end) {
         this.map = map;
         this.start = start;
         this.end = end;
-        this.position = new int[3];
+        this.position =new int[4];
+        position[0]=start[0];
+        position[1]=start[1];
+        position[2]=start[2];
+        position[3]=0;
         timeList = new ArrayList<>();
+        timeList.add(65535);
     }
 
-    public void step() {
+    public int[] step(int[] position) {
     /*数字表示：0：东  1：南  2：西  3：北*/
         if (position[2] == 0) {
             position[1]++;
@@ -54,73 +60,77 @@ class Robot {
         } else if (position[2] == 3) {
             position[0]--;
         }
+        position[3]++;
+        return position;
     }
 
     //转0到3次 0->3 顺时针+ 逆时针-
-    public void turn(int number) {
-        switch (number){
-            case 0:break;
+    public int[] turn(int number,int[] position) {
+        switch (number) {
+            case 0:
+                break;
             case 1:
-                if (position[2]==3){
-                    position[2]=0;
-                    time++;
-                }else {
+                if (position[2] == 3) {
+                    position[2] = 0;
+                    position[3]++;
+                } else {
                     position[2]++;
-                    time++;
+                    position[3]++;
                 }
                 break;
             case 2:
-                switch (position[2]){
+                switch (position[2]) {
                     case 1:
-                        position[2]=3;
+                        position[2] = 3;
                         break;
                     case 2:
-                        position[2]=0;
+                        position[2] = 0;
                         break;
                     case 3:
-                        position[2]=1;
+                        position[2] = 1;
                         break;
                     case 0:
-                        position[2]=2;
+                        position[2] = 2;
                         break;
                 }
-                time=time+2;
+                position[3] = position[3] + 2;
                 break;
             case 3:
-                if (position[2]==0){
-                    position[2]=3;
-                    time++;
-                }else {
+                if (position[2] == 0) {
+                    position[2] = 3;
+                    position[3]++;
+                } else {
                     position[2]--;
-                    time++;
+                    position[3]++;
                 }
                 break;
-            default:break;
+            default:
+                break;
         }
+        return position;
     }
 
-    public void dfs(int[][] repertory){
-        for (int i=0;i<repertory.length;i++){
-            for (int j=0;j<repertory[0].length;j++){
-                for (int t=0;t<4;t++){
-                    this.turn(t);
-                    this.step();
-                    if (position[0]==end[0]&&position[1]==end[1]){
-                        timeList.add(time);
-                        time=0;
-                    }
-                }
+    //0没访问 1障碍或者访问过
+    public void dfs(int[][] repertory, int[] position) {
+        repertory[position[0]][position[1]] = 1;
+        for (int t = 0; t < 4; t++) {
+            int[] positionTemporary = this.step(this.turn(t, position));
+            if (positionTemporary[0] == end[0] && positionTemporary[1] == end[1]) {
+                timeList.add(position[3]);
+            } else if (positionTemporary[0] > -1 && positionTemporary[0] < repertory.length
+                    && positionTemporary[1] > -1 && positionTemporary[1] < repertory[0].length  //确保不出界
+                    && repertory[positionTemporary[0]][positionTemporary[1]] == 0) {         //确保未访问过
+                dfs(repertory, positionTemporary);
             }
         }
     }
 }
 
 public class RobotWalk {
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] start = br.readLine().split(" ");
-        String[] end = br.readLine().split(" ");
+        String[] startString = br.readLine().split(" ");
+        String[] endString = br.readLine().split(" ");
         String[] rc = br.readLine().split(" ");
         int r = Integer.parseInt(rc[0]);
         int c = Integer.parseInt(rc[1]);
@@ -131,8 +141,12 @@ public class RobotWalk {
                 repertory[i][j] = Integer.parseInt(data[j]);
             }
         }
+        int[] start={Integer.parseInt(startString[0]),Integer.parseInt(startString[1]),change(startString[2])};
+        int[] end={Integer.parseInt(endString[0]),Integer.parseInt(endString[1])};
+        Robot robot=new Robot(repertory,start,end);
+        robot.dfs(repertory,robot.position);
+        System.out.println(Collections.min(robot.timeList));
     }
-
     /*
       数字表示：
       0：东
@@ -151,6 +165,4 @@ public class RobotWalk {
             return 3;
         else return 4;
     }
-
-
 }
