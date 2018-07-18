@@ -28,6 +28,11 @@ import java.util.List;
 输出：
 12
 机器人从起点移动到终点所需要的最短秒数，当不可达时输出65535
+1 0 EAST
+0 2 WEST
+2 3
+0 1 0
+0 0 0
  */
 class Robot {
     public int map[][];
@@ -40,32 +45,37 @@ class Robot {
         this.map = map;
         this.start = start;
         this.end = end;
-        this.position =new int[4];
-        position[0]=start[0];
-        position[1]=start[1];
-        position[2]=start[2];
-        position[3]=0;
+        this.position = new int[4];
+        position[0] = start[0];
+        position[1] = start[1];
+        position[2] = start[2];
+        position[3] = 0;
         timeList = new ArrayList<>();
         timeList.add(65535);
     }
 
-    public int[] step(int[] position) {
+    //0不走1走
+    public int[] step(int number, int[] positionOriginal) {
     /*数字表示：0：东  1：南  2：西  3：北*/
-        if (position[2] == 0) {
-            position[1]++;
-        } else if (position[2] == 1) {
-            position[0]++;
-        } else if (position[2] == 2) {
-            position[1]--;
-        } else if (position[2] == 3) {
-            position[0]--;
+        int[] position = {positionOriginal[0], positionOriginal[1], positionOriginal[2], positionOriginal[3]};
+        if (number == 1) {
+            if (position[2] == 0) {
+                position[1]++;
+            } else if (position[2] == 1) {
+                position[0]++;
+            } else if (position[2] == 2) {
+                position[1]--;
+            } else if (position[2] == 3) {
+                position[0]--;
+            }
+            position[3]++;
         }
-        position[3]++;
         return position;
     }
 
     //转0到3次 0->3 顺时针+ 逆时针-
-    public int[] turn(int number,int[] position) {
+    public int[] turn(int number, int[] positionOriginal) {
+        int position[] = {positionOriginal[0], positionOriginal[1], positionOriginal[2], positionOriginal[3]};
         switch (number) {
             case 0:
                 break;
@@ -114,13 +124,16 @@ class Robot {
     public void dfs(int[][] repertory, int[] position) {
         repertory[position[0]][position[1]] = 1;
         for (int t = 0; t < 4; t++) {
-            int[] positionTemporary = this.step(this.turn(t, position));
-            if (positionTemporary[0] == end[0] && positionTemporary[1] == end[1]) {
-                timeList.add(position[3]);
-            } else if (positionTemporary[0] > -1 && positionTemporary[0] < repertory.length
-                    && positionTemporary[1] > -1 && positionTemporary[1] < repertory[0].length  //确保不出界
-                    && repertory[positionTemporary[0]][positionTemporary[1]] == 0) {         //确保未访问过
-                dfs(repertory, positionTemporary);
+            for (int k = 0; k < 2; k++) {
+                int[] positionTemporary = this.step(k, this.turn(t, position));
+                if (positionTemporary[0] == end[0] && positionTemporary[1] == end[1] && positionTemporary[2] == end[2]
+                        && repertory[positionTemporary[0]][positionTemporary[1]] == 0) {
+                    timeList.add(position[3]);
+                } else if (positionTemporary[0] > -1 && positionTemporary[0] < repertory.length
+                        && positionTemporary[1] > -1 && positionTemporary[1] < repertory[0].length  //确保不出界
+                        && repertory[positionTemporary[0]][positionTemporary[1]] == 0) {         //确保未访问过
+                    dfs(repertory, positionTemporary);
+                }
             }
         }
     }
@@ -141,12 +154,13 @@ public class RobotWalk {
                 repertory[i][j] = Integer.parseInt(data[j]);
             }
         }
-        int[] start={Integer.parseInt(startString[0]),Integer.parseInt(startString[1]),change(startString[2])};
-        int[] end={Integer.parseInt(endString[0]),Integer.parseInt(endString[1])};
-        Robot robot=new Robot(repertory,start,end);
-        robot.dfs(repertory,robot.position);
+        int[] start = {Integer.parseInt(startString[0]), Integer.parseInt(startString[1]), change(startString[2])};
+        int[] end = {Integer.parseInt(endString[0]), Integer.parseInt(endString[1]), change(endString[2])};
+        Robot robot = new Robot(repertory, start, end);
+        robot.dfs(repertory, robot.position);
         System.out.println(Collections.min(robot.timeList));
     }
+
     /*
       数字表示：
       0：东
