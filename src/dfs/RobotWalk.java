@@ -36,6 +36,7 @@ import java.util.List;
  */
 class Robot {
     public int map[][];
+    public int visited[][];
     public int[] start;
     public int[] end;
     public int[] position; //从左至右分别为row,col,turn,time
@@ -45,6 +46,7 @@ class Robot {
         this.map = map;
         this.start = start;
         this.end = end;
+        this.visited=new int[map.length][map[0].length];
         this.position = new int[4];
         position[0] = start[0];
         position[1] = start[1];
@@ -122,7 +124,7 @@ class Robot {
 
     //0没访问 1障碍或者访问过
     public void dfs(int[][] repertory, int[] position) {
-        repertory[position[0]][position[1]] = 1;
+        this.visited[position[0]][position[1]] = 1;
         for (int t = 0; t < 4; t++) {
             for (int k = 0; k < 2; k++) {
                 int[] positionTemporary = this.step(k, this.turn(t, position));
@@ -131,7 +133,7 @@ class Robot {
                     timeList.add(position[3]);
                 } else if (positionTemporary[0] > -1 && positionTemporary[0] < repertory.length
                         && positionTemporary[1] > -1 && positionTemporary[1] < repertory[0].length  //确保不出界
-                        && repertory[positionTemporary[0]][positionTemporary[1]] == 0) {         //确保未访问过
+                        && this.visited[positionTemporary[0]][positionTemporary[1]] == 0) {         //确保未访问过
                     dfs(repertory, positionTemporary);
                 }
             }
