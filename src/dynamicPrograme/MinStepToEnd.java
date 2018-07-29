@@ -1,4 +1,6 @@
 package dynamicPrograme;
+
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -25,9 +27,6 @@ public class MinStepToEnd {
             numberList[i] = Integer.parseInt(data[i]);
         }
         int[][] minDis = new int[count][2]; //0表示前一个的位置，1表示最短距离。
-        /*for (int i=1;i<count+1;i++){
-            disRoad[i]=i+"";
-        }*/
         minDis[0][0] = -1;
         minDis[0][1] = 0;
         for (int i = 1; i < numberList.length; i++) {
