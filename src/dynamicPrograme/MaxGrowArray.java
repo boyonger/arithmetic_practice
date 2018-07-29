@@ -13,7 +13,7 @@ import java.util.List;
  * 5
  * 10 4 5 12 8
  */
-public class MonkeyGetPeach {
+public class MaxGrowArray {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int number = Integer.parseInt(br.readLine().trim());
