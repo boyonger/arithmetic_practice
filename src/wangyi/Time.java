@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Time {
     public static void main(String[] args) throws IOException {
@@ -12,8 +13,7 @@ public class Time {
         int number = Integer.parseInt(br.readLine().trim());
         List<String> list=new ArrayList<>();
         for (int i = 0; i < number; i++) {
-            String[] data = br.readLine().
-                    split(":");
+            String[] data = br.readLine().split(":");
             if (Integer.parseInt(data[0]) > 23) {
                 data[0] = "0" + Integer.parseInt(data[0]) % 10;
             }
@@ -21,11 +21,28 @@ public class Time {
                 data[1] = "0" + Integer.parseInt(data[1]) % 10;
             }
             if (Integer.parseInt(data[2]) > 59) {
-                data[1] = "0" + Integer.parseInt(data[2]) % 10;
+                data[2] = "0" + Integer.parseInt(data[2]) % 10;
             }
             list.add(String.join(":", data));
         }
-        for (String a:list){
+        /*Scanner scanner = new Scanner(System.in);
+        int number = scanner.nextInt();
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < number; i++) {
+            String str = scanner.next();
+            String[] data = str.split(":");
+            if (Integer.parseInt(data[0]) > 23) {
+                data[0] = "0" + Integer.parseInt(data[0]) % 10;
+            }
+            if (Integer.parseInt(data[1]) > 59) {
+                data[1] = "0" + Integer.parseInt(data[1]) % 10;
+            }
+            if (Integer.parseInt(data[2]) > 59) {
+                data[2] = "0" + Integer.parseInt(data[2]) % 10;
+            }
+            list.add(String.join(":", data));
+        }*/
+        for (String a : list) {
             System.out.println(a);
         }
     }
