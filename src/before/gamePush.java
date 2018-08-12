@@ -1,4 +1,4 @@
-package wangyi;
+package before;
 
 
 import java.io.BufferedReader;
