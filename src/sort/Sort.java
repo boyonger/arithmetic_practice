@@ -47,17 +47,32 @@ public class Sort {
         }
     }
 
-    public static void adjustHeap(int[] numberList, int i, int length) {
+    //调整最大堆 然后遍历 length就是长度 要减一
+    public static void adjustHeap(int[] numberList, int i, int len) {
         int temp = numberList[i];
-        for (int j = i * 2 + 1; j < numberList.length - 1; j = i * 2 ) {
-            if (j < numberList.length - 2 && numberList[j + 1] < numberList[j]) {
+        for (int j = i * 2 + 1; j < len; j = i * 2 + 1) {
+            if (j < len - 1 && numberList[j + 1] > numberList[j]) {
                 j++;
             }
-            if (temp < numberList[j]) {
+            if (temp > numberList[j]) {
                 break;
             }
             numberList[i] = numberList[j];
             i = j;
+        }
+    }
+
+    public static void headSort(int[] numberList){
+        //构造最大堆
+        for (int i=numberList.length/2-1;i>0;i--){
+            adjustHeap(numberList,i,numberList.length);
+        }
+
+        for (int i=numberList.length-1;i>0;i--){
+            int temp=numberList[0];
+            numberList[0]=numberList[i];
+            numberList[i]=temp;
+            adjustHeap(numberList,i/2-1,i);
         }
     }
 
