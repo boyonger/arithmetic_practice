@@ -49,7 +49,7 @@ public class Sort {
 
     public static void adjustHeap(int[] numberList, int i, int length) {
         int temp = numberList[i];
-        for (int j = i * 2 + 1; j < numberList.length - 1; j = i * 2 + 1) {
+        for (int j = i * 2 + 1; j < numberList.length - 1; j = i * 2 ) {
             if (j < numberList.length - 2 && numberList[j + 1] < numberList[j]) {
                 j++;
             }
