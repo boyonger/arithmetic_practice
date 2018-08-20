@@ -60,6 +60,7 @@ public class Sort {
             numberList[i] = numberList[j];
             i = j;
         }
+        numberList[i]=temp;
     }
 
     public static void headSort(int[] numberList){
@@ -72,7 +73,7 @@ public class Sort {
             int temp=numberList[0];
             numberList[0]=numberList[i];
             numberList[i]=temp;
-            adjustHeap(numberList,i/2-1,i);
+            adjustHeap(numberList,0,i);
         }
     }
 
