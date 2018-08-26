@@ -1,4 +1,4 @@
-package fish;
+package normal;
 
 import java.io.BufferedReader;
 import java.io.IOException;
