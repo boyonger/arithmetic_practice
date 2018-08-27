@@ -3,7 +3,7 @@ package dynamicPrograme;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
+//回文
 public class Palindrome {
     public static void main(String[] args) throws IOException {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));

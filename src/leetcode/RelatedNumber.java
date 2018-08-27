@@ -115,5 +115,7 @@ public class RelatedNumber {
         list = findSubstring(words, s);
         System.out.println(list.toString());*/
 
+
+
     }
 }

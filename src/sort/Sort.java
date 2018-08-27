@@ -34,7 +34,7 @@ public class Sort {
         }
     }
 
-    //megersort small to big
+    //bubble sort small to big
     public static void bubbleSort(int[] numberList) {
         for (int i = 0; i < numberList.length; i++) {
             for (int j = i + 1; j < numberList.length; j++) {
@@ -60,27 +60,28 @@ public class Sort {
             numberList[i] = numberList[j];
             i = j;
         }
-        numberList[i]=temp;
+        numberList[i] = temp;
     }
 
-    public static void headSort(int[] numberList){
-        //构造最大堆
-        for (int i=numberList.length/2-1;i>0;i--){
-            adjustHeap(numberList,i,numberList.length);
+    public static void headSort(int[] numberList) {
+        //构造最大堆 i表示位置 所以从一半到0
+        for (int i = numberList.length / 2 - 1; i > -1; i--) {
+            adjustHeap(numberList, i, numberList.length);
         }
 
-        for (int i=numberList.length-1;i>0;i--){
-            int temp=numberList[0];
-            numberList[0]=numberList[i];
-            numberList[i]=temp;
-            adjustHeap(numberList,0,i);
+        for (int i = numberList.length - 1; i > 0; i--) {
+            int temp = numberList[0];
+            numberList[0] = numberList[i];
+            numberList[i] = temp;
+            adjustHeap(numberList, 0, i);
         }
     }
 
 
     public static void main(String[] args) throws IOException {
-        int[] a = {5, 9, -1, 3, 999, 555, 454545};
-        bubbleSort(a);
+        int[] a = {5, 9, -1, 3, 999, 555, 454545,-9998,555};
+        //bubbleSort(a);
+        headSort(a);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
         }
