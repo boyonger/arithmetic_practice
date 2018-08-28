@@ -6,6 +6,7 @@ import java.util.List;
 public class FullArrange {
 
     public static List<String> list = new ArrayList<>();
+    public static List<String> dictionaryList=new ArrayList<>();
 
     //两种，第一种递归（byRecur），第二种字典排序(byDictionary)
     public static void swap(int[] numberList, int i, int index) {
@@ -28,6 +29,11 @@ public class FullArrange {
                 swap(numberList, i, index);
             }
         }
+    }
+
+    //字典序 从后往前找一对递增序列 从前面的开始计算 找最小的大数交换 翻转。
+    public static void fullArrangeByDictionary(int[] numberList[],int index){
+
     }
 
     public static void main(String[] args) {

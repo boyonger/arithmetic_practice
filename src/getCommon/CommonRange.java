@@ -1,4 +1,4 @@
-package normal;
+package getCommon;
 
 import java.io.IOException;
 import java.util.HashMap;
