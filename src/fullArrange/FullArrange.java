@@ -22,9 +22,16 @@ public class FullArrange {
             }
             list.add(stringBuffer.toString());
         } else {
-            for (int i = index + 1; i < numberList.length; i++) {
+            //因为本身不动已经算是一个排列了，所以从自己的位置开始
+            /*
+            理解index是要交换的数，i是从index遍历到结尾，index分别与每个i交换
+            每交换一次，会继续递归遍历至后面
+            123
+
+             */
+            for (int i = index; i < numberList.length; i++) {
                 swap(numberList, i, index);
-                fullArrangeByRecur(numberList, i);
+                fullArrangeByRecur(numberList, index + 1);
                 swap(numberList, i, index);
             }
         }
