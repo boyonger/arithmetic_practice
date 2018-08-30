@@ -1,4 +1,4 @@
-package writtenExam.youdao;
+package fullArrange;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //n个a m个z aazz 开始字典排序 azaz azza
-public class Permutation {
+public class atoZPermutation {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] countString = br.readLine().trim().split(" ");
