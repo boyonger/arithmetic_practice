@@ -1,4 +1,4 @@
-package graph;
+package graph.wholeGraph;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -179,8 +179,8 @@ public class GraphLink {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] data = br.readLine().split(" ");
         int n= Integer.parseInt(data[0]);
-        int[] edge=new int[][2];
-        GraphLink graphLink=new GraphLink(n);
+/*        int[] edge=new int[][2];
+        GraphLink graphLink=new GraphLink(n);*/
         for (int i=0;i<n;i++){
             data=br.readLine().split(" ");
 

@@ -1,4 +1,4 @@
-package graph;
+package graph.wholeGraph;
 
 import java.io.IOException;
 
