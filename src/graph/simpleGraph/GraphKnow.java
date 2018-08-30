@@ -1,7 +1,11 @@
 package graph.simpleGraph;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 //simple 没有权值
-class Graph{
+class Graph {
     private int graphMatrix[][];
     private int vertexList[];
 
@@ -9,7 +13,7 @@ class Graph{
         graphMatrix = new int[verNumber][verNumber];
         for (int i = 0; i < graphMatrix.length; i++) {
             for (int j = 0; j < graphMatrix[0].length; j++) {
-                 graphMatrix[i][j] = 0;
+                graphMatrix[i][j] = 0;
             }
         }
         vertexList = new int[verNumber];
@@ -25,15 +29,16 @@ class Graph{
 
     public int getFirstVertex(int v) {
         for (int i = 0; i < this.graphMatrix.length; i++) {
-            if (graphMatrix[v][i] > 0 && graphMatrix[v][i] < Integer.MAX_VALUE)
+            if (graphMatrix[v][i] > 0)
                 return i;
         }
         return -1;
     }
 
+    //&& graphMatrix[v1][i] < Integer.MAX_VALUE
     public int getNextVertex(int v1, int v2) {
         for (int i = v2 + 1; i < this.graphMatrix.length; i++) {
-            if (graphMatrix[v1][i] > 0 && graphMatrix[v1][i] < Integer.MAX_VALUE)
+            if (graphMatrix[v1][i] > 0)
                 return i;
         }
         return -1;
@@ -67,12 +72,38 @@ class Graph{
             if (visited[p] == false) {
                 dfs(p, visited);
             } else {
-                p = this.getNextVertex();
+                p = this.getNextVertex(v, p);
             }
         }
     }
 
 }
-public class GraphKnow {
 
+/*
+10
+0
+5 3 0
+8 4 0
+9 0
+9 0
+3 0
+0
+7 9 0
+0
+9 7 0
+ */
+public class GraphKnow {
+    public static void main(String[] args) throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String[] data = br.readLine().split(" ");
+        int n = Integer.parseInt(data[0]);
+        Graph graph = new Graph(n);
+        for (int i = 0; i < n; i++) {
+            data = br.readLine().split(" ");
+            for (int j = 0; Integer.parseInt(data[j]) != 0; j++) {
+                graph.addVertex(i, Integer.parseInt(data[j])-1);
+            }
+        }
+        System.out.println(graph.dfs(0));
+    }
 }
