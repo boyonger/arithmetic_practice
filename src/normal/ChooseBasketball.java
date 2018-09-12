@@ -32,5 +32,6 @@ public class ChooseBasketball {
             System.out.println(a);
 
         }
+        System.out.println("1");
     }
 }

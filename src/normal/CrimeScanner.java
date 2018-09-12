@@ -10,7 +10,7 @@ package normal;
 */
 import java.util.Scanner;
 
-public class Crime {
+public class CrimeScanner {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

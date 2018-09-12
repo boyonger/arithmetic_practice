@@ -3,7 +3,10 @@ package writtenExam.pinDuoDuo;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /*
 3 4
@@ -12,6 +15,10 @@ TORN
 SHOW
  */
 public class SetDictionaryName {
+
+
+    public static Set<String> existSet = new HashSet<>();
+
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] data = br.readLine().trim().split(" ");
@@ -21,6 +28,7 @@ public class SetDictionaryName {
         Character[][] chooseList = new Character[l][n];
         for (int i = 0; i < n; i++) {
             String s = br.readLine().trim();
+            existSet.add(s);
             for (int j = 0; j < l; j++) {
                 chooseList[j][i] = s.charAt(j); //颠倒顺序
             }
@@ -34,6 +42,9 @@ public class SetDictionaryName {
             }
             System.out.println("");
         }
+        List<Character> list = new ArrayList<>();
+        dfs(chooseList, 0, list);
+        System.out.println(list.toString());
 /*        StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < getName.length; i++) {
             stringBuffer.append(getName[i].charAt(0));
@@ -41,11 +52,26 @@ public class SetDictionaryName {
         System.out.println(stringBuffer.toString());*/
     }
 
-    //开始深度遍历 我就不行写这么多dfs我还不会写！
-    public static void dfs(Character[][] chooseList,int row, int col){
-        String words="";
-
-
+    //开始深度遍历 我就不行写这么多dfs我还不会写！ 0.0 多练习
+    public static void dfs(Character[][] chooseList, int row, List<Character> wordList) {
+        boolean flag=false;
+        for (int i = 0; i < chooseList[0].length; i++) {
+            wordList.add(chooseList[row][i]);
+            if (row == chooseList.length - 1) {
+                StringBuffer stringBuffer = new StringBuffer();
+                for (Character a : wordList) {
+                    stringBuffer.append(a);
+                }
+                if (!existSet.contains(stringBuffer.toString())) {
+                    flag=true;
+                    break;
+                    //若要全部 list.add
+                }
+            }else{
+                dfs(chooseList, row + 1, wordList);
+            }
+            wordList.remove(wordList.size() - 1);
+        }
     }
 
 
