@@ -1,4 +1,4 @@
-package binary;
+package binaryTree;
 
 import java.io.*;
 import java.text.DecimalFormat;

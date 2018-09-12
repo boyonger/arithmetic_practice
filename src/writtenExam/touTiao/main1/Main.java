@@ -1,4 +1,4 @@
-package touTiao.main1;
+package writtenExam.touTiao.main1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

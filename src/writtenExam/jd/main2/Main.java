@@ -1,4 +1,4 @@
-package jd.main2;
+package writtenExam.jd.main2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
