@@ -41,7 +41,7 @@ class BinaryTree {
 
     }
 }
-
+/*
 public class ConstructTreeByPreAndIn {
     public static void main(String[] args) {
         int[] a = {1, 2, 4, 7, 3, 5, 6, 8};
@@ -49,4 +49,4 @@ public class ConstructTreeByPreAndIn {
         BinaryTree binaryTree = new BinaryTree();
         binaryTree.insertTree(binaryTree.root,a,b,0,0, );
     }
-}
+}*/

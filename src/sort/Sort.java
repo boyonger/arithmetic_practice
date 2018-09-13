@@ -79,7 +79,7 @@ public class Sort {
 
 
     public static void main(String[] args) throws IOException {
-        int[] a = {5, 9, -1, 3, 999, 555, 454545,-9998,555};
+        int[] a = {522, 9, -1, 3, 999, 555, 454545,-9998,555};
         //bubbleSort(a);
         headSort(a);
         for (int i = 0; i < a.length; i++) {
