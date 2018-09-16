@@ -38,7 +38,7 @@ public class Main {
                                 List<List<Integer>> secList = numberPos.get(t);
                                 secList.add(list1);
                                 //numberPos.remove(t);
-                                //numberPos.add(secList);
+                                //numberPos.changeTo(secList);
                                 break;
                             }
                         }

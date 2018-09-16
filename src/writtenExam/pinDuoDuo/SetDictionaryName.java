@@ -52,7 +52,7 @@ public class SetDictionaryName {
         System.out.println(stringBuffer.toString());*/
     }
 
-    //开始深度遍历 我就不行写这么多dfs我还不会写！ 0.0 多练习
+    //开始深度遍历 我就不行写这么多dfs我还不会写！ 0.0 多练习 递归深度遍历字典查找
     public static void dfs(Character[][] chooseList, int row, List<Character> wordList) {
         boolean flag=false;
         for (int i = 0; i < chooseList[0].length; i++) {
@@ -65,7 +65,7 @@ public class SetDictionaryName {
                 if (!existSet.contains(stringBuffer.toString())) {
                     flag=true;
                     break;
-                    //若要全部 list.add
+                    //若要全部 list.changeTo
                 }
             }else{
                 dfs(chooseList, row + 1, wordList);

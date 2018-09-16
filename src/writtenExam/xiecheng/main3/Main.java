@@ -7,8 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-
 /*
 2
 p 1 1
@@ -20,7 +18,7 @@ g 1
 g 2
 g 3
 */
-
+//一般情况下不要想着去结束输入输出流，如果没有限定输入行数则动态输出即可
 public class Main {
     public static void main(String[] args) throws IOException {
         Map<Integer, Integer> LRU = new HashMap<>(); // 0 频率 1数值

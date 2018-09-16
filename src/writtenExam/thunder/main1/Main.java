@@ -22,7 +22,7 @@ public class Main {
         }
         System.out.println(sum);
     }
-
+    //公约
     public static int divNumber(int a, int b) {
         return a % b == 0 ? b : divNumber(b, a % b);
     }

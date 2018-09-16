@@ -1,4 +1,4 @@
-package writtenExam.huya.main1;
+package binaryTree.TreeOrder;
 
 import java.util.Scanner;
 import java.util.Stack;
@@ -39,7 +39,7 @@ class BinaryTree { // 二叉树类
     }
 }
 
-public class Main {
+public class Order {
     public static void order(String[] a) {
         /*
         StringBuilder stringBuilder = new StringBuilder();

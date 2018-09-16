@@ -25,7 +25,7 @@ public class Main2 {
                 }
                 String company = inputString.substring(i, j + 1);
                 if (wordSet.contains(company)) {
-                    //outPutSet.add(company);
+                    //outPutSet.changeTo(company);
                         outList.add(company);
                     i = i + company.length() - 1;
                     break;

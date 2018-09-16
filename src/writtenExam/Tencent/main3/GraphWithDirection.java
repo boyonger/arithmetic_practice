@@ -1,10 +1,9 @@
-package graph.simpleGraph;
+package writtenExam.Tencent.main3;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-//simple 没有权值
+//两个有向图，检测每个点可达点以及所有可达这个点的点。
 class Graph {
     private int graphMatrix[][];
     private int vertexList[];
@@ -20,10 +19,7 @@ class Graph {
     }
 
     public boolean addVertex(int v1, int v2) {
-        if (v1 < 0 || v1 >= vertexList.length || v1 < 0 || v2 >= vertexList.length)
-            return false;
         graphMatrix[v1][v2] = 1;
-        graphMatrix[v2][v1] = 1;
         return true;
     }
 
@@ -35,7 +31,6 @@ class Graph {
         return -1;
     }
 
-    //&& graphMatrix[v1][i] < Integer.MAX_VALUE
     public int getNextVertex(int v1, int v2) {
         for (int i = v2 + 1; i < this.graphMatrix.length; i++) {
             if (graphMatrix[v1][i] > 0)
@@ -44,47 +39,19 @@ class Graph {
         return -1;
     }
 
-    /*
-        public boolean judgeTwo() {
-        List<Integer> list = new LinkedList<>();
-        color[0] = 2; // 2  -2
-        list.changeTo(0);
-        while (!list.isEmpty()) {
-            int v1 = list.remove(0);
-            for (int i = 0; i < graphMatrix[v1].length; i++) {
-                int v2 = graphMatrix[v1][i];
-                if (color[v2] == 0) {
-                    color[v2] = -color[v1];
-                    list.changeTo(v2);
-                } else if (color[v2] == color[v1]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-     */
-
+    //计算到达的城市数
     public int dfs(int v) {
         int sum = 0;
-        boolean isDone = false;
         boolean[] visited = new boolean[vertexList.length];
         this.dfs(v, visited);
-        sum++;
-        while (isDone == false) {
-            isDone = true;
-            for (int i = 0; i < vertexList.length; i++) {
-                if (visited[i] == false) {
-                    isDone = false;
-                    this.dfs(i, visited);
-                    sum++;
-                }
+        for (int i = 0; i < vertexList.length; i++) {
+            if (visited[i]==true){
+                sum++;
             }
         }
         return sum;
     }
 
-    //深度遍历以及广度遍历都只访问一次连通图。
     private void dfs(int v, boolean[] visited) {
         visited[v] = true;
         int p = this.getFirstVertex(v);
@@ -97,33 +64,30 @@ class Graph {
         }
     }
 
+
 }
 
-/*
-10
-0
-5 3 0
-8 4 0
-9 0
-9 0
-3 0
-0
-7 9 0
-0
-9 7 0
- */
-public class GraphKnow {
+public class GraphWithDirection {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String[] data = br.readLine().split(" ");
         int n = Integer.parseInt(data[0]);
-        Graph graph = new Graph(n);
+        int m = Integer.parseInt(data[1]);
+        Graph graphCanTo = new Graph(n);
+        Graph graphCanFrom = new Graph(n);
+        for (int i = 0; i < m; i++) {
+            data = br.readLine().trim().split(" ");
+            graphCanTo.addVertex(Integer.parseInt(data[0]) - 1, Integer.parseInt(data[1]) - 1);
+            graphCanFrom.addVertex(Integer.parseInt(data[1]) - 1, Integer.parseInt(data[0]) - 1);
+        }
+        int sum = 0;
         for (int i = 0; i < n; i++) {
-            data = br.readLine().split(" ");
-            for (int j = 0; Integer.parseInt(data[j]) != 0; j++) {
-                graph.addVertex(i, Integer.parseInt(data[j])-1);
+            int sumGo = graphCanTo.dfs(i);
+            int sumFrom = graphCanFrom.dfs(i);
+            if (sumFrom > sumGo) {
+                sum++;
             }
         }
-        System.out.println(graph.dfs(0));
+        System.out.println(sum);
     }
 }

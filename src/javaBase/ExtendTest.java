@@ -22,7 +22,7 @@ class RedApple extends Apple{
 }
 public class ExtendTest {
     public static void main(String[] args) throws IOException {
-        Fruit[] fruits=new Apple[10];
+/*        Fruit[] fruits=new Apple[10];
         try {
             fruits[0]=new Apple();
             System.out.println("apple ok");
@@ -42,6 +42,8 @@ public class ExtendTest {
             System.out.println("fruit wrong");
         }
         fruits[0].method1();
-        System.out.println(fruits[0].a);
+        System.out.println(fruits[0].a);*/
+        int[] a=new int[10];
+        System.out.println(a);
     }
 }

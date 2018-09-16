@@ -1,4 +1,4 @@
-package writtenExam.youdao;
+package javaBase;
 
 import java.io.*;
 

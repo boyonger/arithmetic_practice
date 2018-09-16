@@ -1,4 +1,4 @@
-package writtenExam.wangyiAgain.main1;
+package writtenExam.NeteaseAgain.main1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

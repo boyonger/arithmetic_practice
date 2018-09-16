@@ -19,7 +19,7 @@ public class atoZPermutation {
             spellList.add('a');
         }
         /*for (int i=0;i<m;i++){
-            spellList.add('z');
+            spellList.changeTo('z');
         }*/
         int t = k % m;
         int number = k / m;

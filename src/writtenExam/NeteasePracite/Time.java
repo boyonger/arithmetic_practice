@@ -39,7 +39,7 @@ public class Time {
             if (Integer.parseInt(data[2]) > 59) {
                 data[2] = "0" + Integer.parseInt(data[2]) % 10;
             }
-            list.add(String.join(":", data));
+            list.changeTo(String.join(":", data));
         }*/
         for (String a : list) {
             System.out.println(a);
