@@ -1,4 +1,4 @@
-package zhaoHangBank.main1;
+package writtenExam.zhaoHangBank.main1;
 
 import java.io.BufferedReader;
 import java.io.IOException;

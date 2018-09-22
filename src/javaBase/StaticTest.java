@@ -39,7 +39,7 @@ public class StaticTest {
 /*        List<Integer> list= Arrays.asList(2,8,3,9,-2);
         Collections.sort(list);
         System.out.println(list.toString());*/
-        int i = add(12, 13);
+/*        int i = add(12, 13);
         System.out.println(i);
 
     }
@@ -50,6 +50,9 @@ public class StaticTest {
         sum = x ^ y;
         carry = (x & y) << 1;
         return add(sum, carry);
+    }*/
+        //double a=Double.parseDouble("2.");
+        System.out.println("11s9".matches(".*s*"));
     }
 }
 
