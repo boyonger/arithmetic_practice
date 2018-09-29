@@ -7,9 +7,9 @@ package dfs;
  */
 public class RobotMove {
     public static void main(String[] args) {
-        int k = 18;
-        int[][] matrix = new int[2][2];
-        int[][] visited = new int[2][2];
+        int k = 4;
+        int[][] matrix = new int[2 * k][2 * k];
+        int[][] visited = new int[2 * k][2 * k];
         System.out.println(dfs(matrix, visited, 0, 0, k));
     }
 
@@ -29,13 +29,15 @@ public class RobotMove {
             return false;
         } else {
             int sum = 0;
-            while (row != 0) {
-                sum += row % 10;
-                row /= 10;
+            int calculateRow = row;
+            int calculateCol = col;
+            while (calculateRow != 0) {
+                sum += calculateRow % 10;
+                calculateRow /= 10;
             }
-            while (col != 0) {
-                sum += col % 10;
-                col /= 10;
+            while (calculateCol != 0) {
+                sum += calculateCol % 10;
+                calculateCol /= 10;
             }
             if (sum > k)
                 return false;
