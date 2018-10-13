@@ -30,7 +30,6 @@ public class FullArrange {
             理解index是要交换的数，i是从index遍历到结尾，index分别与每个i交换
             每交换一次，会继续递归遍历至后面
             123
-
              */
             for (int i = index; i < numberList.length; i++) {
                 swap(numberList, i, index);
