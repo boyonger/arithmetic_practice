@@ -1,10 +1,8 @@
-package touTiao1008.main2;
+package writtenExam.touTiao1008.main2;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Stack;
 
 public class Main {

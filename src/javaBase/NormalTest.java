@@ -9,7 +9,10 @@ public class NormalTest {
         System.out.print(b);*/
         //int a=65; A
         /*int a='A'+32;
-        System.out.print((char) a);*/
-        int a[][]={{4,6,3},{2,3,6}};
+        System.out.print((char) a);
+        int a[][]={{4000,61112,333344},{2567676,3454545,6969696}};*/
+        Integer a=1;
+        Integer b=2;
+        System.out.print(++a);
     }
 }

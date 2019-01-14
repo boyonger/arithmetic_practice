@@ -1,5 +1,6 @@
 package binaryTree;
 
+//前序遍历和中序遍历构造二叉树
 class BinaryNode {
     public int value;
     public BinaryNode leftChild;
@@ -34,7 +35,6 @@ class BinaryTree {
         return node;
     }
 
-    //递归
     public void preOrder(BinaryNode root) {
         if (root != null) {
             System.out.println(root.value);
@@ -43,21 +43,6 @@ class BinaryTree {
         }
     }
 
-    public void inOrder(BinaryNode root) {
-        if (root != null) {
-            inOrder(root.leftChild);
-            System.out.println(root.value);
-            inOrder(root.rightChild);
-        }
-    }
-
-    public void backOrder(BinaryNode root) {
-        if (root != null) {
-            backOrder(root.leftChild);
-            backOrder(root.rightChild);
-            System.out.println(root.value);
-        }
-    }
 }
 
 public class ConstructTreeByPreAndIn {
