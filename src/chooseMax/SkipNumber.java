@@ -32,7 +32,7 @@ public class SkipNumber {
                     System.out.println(maxSumNotSkip);
                     flag=false;
                     break;
-                }else if (midSkip<maxSumBySkip){
+                } else if (midSkip<maxSumBySkip){
                     maxSumBySkip=midSkip;
                 }
             }

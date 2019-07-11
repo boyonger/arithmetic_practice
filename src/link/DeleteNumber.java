@@ -132,6 +132,7 @@ public class DeleteNumber {
     public static void main(String[] args) throws IOException {
         String str;
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
+        //文件，输入等流循环读取
         while ((str = bf.readLine()) != null) {
             Link link = new Link();
             int number = Integer.parseInt(str);

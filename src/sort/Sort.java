@@ -7,7 +7,8 @@ public class Sort {
 
     //快排
     //xposition表示移动后的比较数位置 i表示xposition跟不上小于他的数的位置 需交换
-    public static int slip(int start, int end, int[] numberList) { //从0开始，end结束（不包括end）
+    //从0开始，end结束（不包括end 传入时包括end）
+    public static int slip(int start, int end, int[] numberList) {
         int x = numberList[start];
         int xPosition = start;
         for (int i = start + 1; i < end; i++) {
@@ -30,7 +31,7 @@ public class Sort {
         if (start < end) {
             int mid = slip(start, end, numberList);
             quickSort(start, mid, numberList);
-            quickSort(mid, end, numberList);
+            quickSort(mid + 1, end, numberList);
         }
     }
 
@@ -79,11 +80,18 @@ public class Sort {
 
 
     public static void main(String[] args) throws IOException {
-        int[] a = {522, 9, -1, 3, 999, 555, 454545,-9998,555};
+        int[] a = {522, 9, -1, 3, 999, 555, 454545, -9998, 555};
+        int b[]={49, 38, 65, 97, 76, 13, 27, 50 };
         //bubbleSort(a);
-        headSort(a);
+        //headSort(a);
+        quickSort(0,b.length,b);
+        quickSort(0, a.length , a);
         for (int i = 0; i < a.length; i++) {
             System.out.print(a[i] + " ");
+        }
+        System.out.println();
+        for (int i = 0; i < b.length; i++) {
+            System.out.print(b[i] + " ");
         }
     }
 
