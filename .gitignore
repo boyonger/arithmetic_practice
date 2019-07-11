@@ -1,4 +1,5 @@
 sh.exe.stackdump
 *.xml
+*。class
 out
 .idea/
