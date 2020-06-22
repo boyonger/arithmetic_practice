@@ -30,7 +30,7 @@ class BinaryTree { // 二叉树类
     //根据数组构造链表二叉树并且*表示为空
     public BinaryNode insert(String[] binaryArray, int i) {
         if (i < binaryArray.length && !binaryArray[i].equals("#")) {
-            root.data = binaryArray[i];
+            BinaryNode root = new BinaryNode(binaryArray[i]);
             root.leftChild = insert(binaryArray, 2 * i + 1);
             root.rightChild = insert(binaryArray, 2 * i + 2);
             return root;
@@ -38,7 +38,6 @@ class BinaryTree { // 二叉树类
             return null;
         }
     }
-
 
     //递归
     public void preOrder(BinaryNode root) {
@@ -66,32 +65,30 @@ class BinaryTree { // 二叉树类
     }
 
     //非递归前序
-    public void preOrderNotRecur(BinaryNode root){
-        Stack<BinaryNode> binaryStack=new Stack<>();
-        BinaryNode p=root;
+    public void preOrderNotRecur(BinaryNode root) {
+        Stack<BinaryNode> binaryStack = new Stack<>();
+        BinaryNode p = root;
         binaryStack.push(p);
-        while(!binaryStack.isEmpty()){
-            p=binaryStack.pop();
-            if ((p.rightChild!=null)){
-                p=p.rightChild;
+        while (!binaryStack.isEmpty()) {
+            p = binaryStack.pop();
+            if ((p.rightChild != null)) {
+                p = p.rightChild;
                 binaryStack.push(p);
             }
             System.out.println(p.data);
-            if (p.leftChild!=null){
-                p=p.leftChild;
+            if (p.leftChild != null) {
+                p = p.leftChild;
                 binaryStack.push(p);
             }
         }
     }
 
     //非递归中序
-    public void inOrderNotRecur(BinaryNode root){
-        
+    public void inOrderNotRecur(BinaryNode root) {
+
     }
 
-
 }
-
 
 public class Order {
     //数组二叉树前序遍历
@@ -113,15 +110,11 @@ public class Order {
         System.out.println(stringBuilder);
     }
 
-
-
     public static void main(String[] args) {
-
 
         //String[] a = parseSampleInput();
         //order(a);
     }
-
 
     public static String[] parseSampleInput() {
         Scanner in = new Scanner(System.in);
