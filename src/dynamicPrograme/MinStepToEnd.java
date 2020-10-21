@@ -50,7 +50,7 @@ public class MinStepToEnd {
             stack.push(numberList[mid]);
             mid = minDis[mid][0];
         }
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuffer = new StringBuilder();
         while (!stack.isEmpty()) {
             stringBuffer.append(stack.pop()).append(",");
         }

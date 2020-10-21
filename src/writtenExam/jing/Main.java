@@ -1,4 +1,4 @@
-package jing;
+package writtenExam.jing;
 
 import java.io.IOException;
 
@@ -11,8 +11,9 @@ public class Main {
         }
     }
 
-    //s==3
-    //1,2,3  4,5 -> 4,5,1,2,3
+    // s==3
+    // 1,2,3  4,5 -> 4,5,1,2,3
+    // 全部翻转然后交换即可 即 5 4 3 2 1 然后在3的地方都再翻转 45 123
     public static void exchange(int[] a, int s) {
         int pos = 0;
         int other = s;

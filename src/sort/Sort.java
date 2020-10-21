@@ -1,13 +1,18 @@
 package sort;
 
 import java.io.IOException;
+import java.util.Map;
 
-//all in small to big
+/*
+all in small to big
+ */
 public class Sort {
 
-    //快排
-    //xposition表示移动后的比较数位置 i表示xposition跟不上小于他的数的位置 需交换
-    //从0开始，end结束（不包括end 传入时包括end）
+    /*
+    快排
+    xposition表示移动后的比较数位置 i表示xposition跟不上小于他的数的位置 需交换
+    从0开始，end结束（不包括end 传入时包括end）
+     */
     public static int slip(int start, int end, int[] numberList) {
         int x = numberList[start];
         int xPosition = start;
@@ -48,7 +53,7 @@ public class Sort {
         }
     }
 
-    //调整最大堆 然后遍历 length就是长度 要减一
+    // 调整最大堆 然后遍历 length就是长度 要减一
     public static void adjustHeap(int[] numberList, int i, int len) {
         int temp = numberList[i];
         for (int j = i * 2 + 1; j < len; j = i * 2 + 1) {
@@ -65,7 +70,7 @@ public class Sort {
     }
 
     public static void headSort(int[] numberList) {
-        //构造最大堆 i表示位置 所以从一半到0
+        // 构造最大堆 i表示位置 所以从一半到0
         for (int i = numberList.length / 2 - 1; i > -1; i--) {
             adjustHeap(numberList, i, numberList.length);
         }

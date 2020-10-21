@@ -26,12 +26,12 @@ class Link {
         this.firstLink.next = firstLink;
     }
 
-    //由于有附加头结点，所以第一个结点插在之后
-    //考虑后觉得约瑟夫问题不用附加头结点
+    // 由于有附加头结点，所以第一个结点插在之后
+    // 考虑后觉得约瑟夫问题不用附加头结点
     Link(LinkNote p) {
+        firstLink = new LinkNote();
         firstLink.next = p;
     }
-
 
     //在链表头插入新的元素
     public boolean addLinkFront(LinkNote link) {
@@ -101,6 +101,7 @@ class Link {
                 p = p.next;
             }
         }
+        // 到达对应的位置的节点
         value.next = p.next;
         p.next = value;
         return true;

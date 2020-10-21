@@ -40,6 +40,11 @@ public class Main {
     }
 
     //下面是最大公约数以及最小公倍数的算法
+    /*
+    a>b
+    辗转相除法：两个正整数a和b（a>b），它们的最大公约数等于a除以b的余数c和b之间的最大公约数。
+    比如10和25，25除以10商2余5,那么10和25的最大公约数，等同于10和5的最大公约数。
+     */
     public static int divNumber(int a, int b) {
         return a % b == 0 ? b : divNumber(b, a % b);
     }
